@@ -2,6 +2,7 @@ import "dotenv/config";
 import { sequelize } from "./database.js";
 import express from "express";
 import sessionsRoutes from "./routes/sessions.js";
+import materialsRoutes from "./routes/materials.js"
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 // routes
 app.use(express.json());
 app.use("/api/sessions", sessionsRoutes);
+app.use("/api/materials", materialsRoutes);
 
 const startServer = async () => {
   try {

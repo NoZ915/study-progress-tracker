@@ -3,6 +3,6 @@ import { getAllSessions } from "../controllers/sessionController.js";
 
 const router = express.Router();
 
-router.get("/", getAllSessions);
+router.get("/getAllSessions", getAllSessions);
 
 export default router;
