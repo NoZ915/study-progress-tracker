@@ -1,10 +1,12 @@
 import "dotenv/config";
-import { sequelize } from "./database.js";
+import cors from "cors";
 import express from "express";
+import { sequelize } from "./database.js";
 import sessionsRoutes from "./routes/sessions.js";
 import materialsRoutes from "./routes/materials.js"
 
 const app = express();
+app.use(cors());
 
 // middleware
 app.use((req, res, next) => {
