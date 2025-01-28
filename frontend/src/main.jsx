@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import App from './App.jsx'
 import MaterialsPage from '../pages/MaterialsPage.jsx';
+import SessionsPage from '../pages/SessionsPage.jsx';
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <MaterialsPage />,
         index: true
+      },
+      {
+        path: "/material/:id",
+        element: <SessionsPage />
       }
     ]
   }
