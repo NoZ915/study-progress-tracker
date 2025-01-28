@@ -1,7 +1,7 @@
 import { useGetAllMaterials } from "../hooks/materials/useGetAllMaterials.js";
-import { Container, Text, Grid, Card, Loader, Image } from "@mantine/core";
+import { Container, Text, SimpleGrid, Card, Loader, Image, AspectRatio } from "@mantine/core";
 import { Link } from "react-router-dom";
-import styles from "./MaterialsPage.module.css"; 
+import styles from "./MaterialsPage.module.css";
 
 function MaterialsPage() {
     const { data: materials, isLoading } = useGetAllMaterials();
@@ -13,35 +13,32 @@ function MaterialsPage() {
             </Text>
 
             {!isLoading ? (
-                <Grid gutter="md">
+                <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
                     {materials.map((material) => (
-                        <Grid.Col key={material.material_id} span={4}>
-                            <Link style={{textDecoration: "none"}} to={`/material/${material.material_id}`}>
-                                <Card
-                                    shadow="sm"
-                                    radius="md"
-                                    withBorder
-                                    className={styles.card}
-                                    style={{
-                                        backgroundColor: "white",
-                                        height: 400
-                                    }}
-                                >
-                                    <Card.Section style={{ marginBottom: 10, height: 350, overflow: "hidden" }}>
-                                        <Image
-                                            src={material.image_url}
-                                            alt={material.title}
-                                            fix="cover"
-                                        />
-                                    </Card.Section>
-                                    <Text weight={500} size="lg" align="center">
-                                        {material.title}
-                                    </Text>
-                                </Card>
-                            </Link>
-                        </Grid.Col>
+                        <Link key={material.material_id} to={`/material/${material.material_id}`} style={{ textDecoration: "none" }} >
+                            <Card
+                                shadow="sm"
+                                radius="md"
+                                withBorder
+                                className={styles.card}
+                                style={{
+                                    backgroundColor: "white",
+                                    height: 400
+                                }}
+                            >
+                                <AspectRatio ratio={1080 / 1920} style={{ marginBottom: "10px", overflow: "hidden" }}>
+                                    <Image
+                                        src={material.image_url}
+                                        alt={material.title}
+                                    />
+                                </AspectRatio>
+                                <Text weight={500} size="lg" align="center">
+                                    {material.title}
+                                </Text>
+                            </Card>
+                        </Link>
                     ))}
-                </Grid>
+                </SimpleGrid>
             ) : (
                 <Loader size="lg" variant="bars" />
             )}
