@@ -1,0 +1,9 @@
+.card {
+    transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.card:hover {
+    background-color: red;
+    transform: scale(1.01);
+    box-shadow: var(--mantine-shadow-md);
+}
