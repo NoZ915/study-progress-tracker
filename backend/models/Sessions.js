@@ -11,7 +11,7 @@ export const Session = sequelize.define("Session", {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Materials', // 參考資料表名稱 (需對應到你的 Materials 模型)
+      model: 'Materials', // 參考資料表名稱 (對應 Materials model)
       key: 'material_id', // 對應到的欄位名稱
     },
     onUpdate: 'CASCADE',

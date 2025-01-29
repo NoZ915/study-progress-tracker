@@ -15,7 +15,7 @@ function MaterialsPage() {
             {!isLoading ? (
                 <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
                     {materials.map((material) => (
-                        <Link key={material.material_id} to={`/material/${material.material_id}`} style={{ textDecoration: "none" }} >
+                        <Link key={material.material_id} to={`/sessions/${material.material_id}`} style={{ textDecoration: "none" }} >
                             <Card
                                 shadow="sm"
                                 radius="md"

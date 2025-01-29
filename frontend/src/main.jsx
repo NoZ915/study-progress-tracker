@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         index: true
       },
       {
-        path: "/material/:id",
+        path: "/sessions/:materialId",
         element: <SessionsPage />
       }
     ]
