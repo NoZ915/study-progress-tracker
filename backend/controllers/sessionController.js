@@ -11,8 +11,7 @@ export const getAllSessions = async (req, res) => {
 
 export const getSessionsByMaterialId = async (req, res) => {
   try{
-    console.log("hi there")
-    const materialId = req.params;
+    const materialId = req.params.materialId;
     if(!materialId) return res.status(400).json({ error: "Material Id is needed!" });
 
     const sessions = await SessionService.getSessionsByMaterialId(materialId);
