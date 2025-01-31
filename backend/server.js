@@ -1,12 +1,16 @@
 import "dotenv/config";
+import "./config/passport.js";
 import cors from "cors";
 import express from "express";
+import passport from "passport";
 import { sequelize } from "./database.js";
 import sessionsRoutes from "./routes/sessions.js";
 import materialsRoutes from "./routes/materials.js"
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 app.use(cors());
+app.use(passport.initialize());
 
 // middleware
 app.use((req, res, next) => {
@@ -17,6 +21,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/api/sessions", sessionsRoutes);
 app.use("/api/materials", materialsRoutes);
+app.use("/api/auth", authRoutes);
 
 const startServer = async () => {
   try {
