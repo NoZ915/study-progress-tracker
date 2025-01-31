@@ -15,6 +15,9 @@ function SessionPage() {
         setEditSession(session);
         console.log(editSession)
     }
+    const handleClose = () => {
+        setEditSession(null);
+    }
 
     return (
         <div>
@@ -58,6 +61,7 @@ function SessionPage() {
             {editSession && (
                 <EditSessionMaodal 
                     session={editSession}
+                    onClose={handleClose}
                 />
             )}
         </div>
