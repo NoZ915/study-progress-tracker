@@ -1,4 +1,6 @@
 import express from "express";
+import passport from "passport";
+import { googleAuth } from "../controllers/userController.js"
 // import { authenticateJWT } from "../middlewares/authMiddleware";
 
 const router = express.Router();

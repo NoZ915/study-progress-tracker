@@ -1,8 +1,9 @@
 import userRepository from "../repositories/userRepository.js";
-import generateToken from "../utils/jwt.js";
+import {generateToken} from "../utils/jwt.js";
 
 class UserService{
     async createUserAndGenerateToken(userData){
+        console.log("UserDataaaaaaaaaaaaaaaa",userData)
         const user = await userRepository.findOrCreateUser(userData);
         const token = generateToken(userData);
 

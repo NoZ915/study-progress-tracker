@@ -1,7 +1,6 @@
 import express from 'express';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
-import { OAuth2Client } from 'google-auth-library'
 
 passport.use(
   new GoogleStrategy({
@@ -16,4 +15,5 @@ passport.use(
         done(err, false);
       }
     })
+
 )
