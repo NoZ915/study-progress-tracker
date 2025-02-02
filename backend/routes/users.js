@@ -1,6 +1,6 @@
 import express from "express";
 import passport from "passport";
-import { googleAuth } from "../controllers/userController.js"
+import { googleAuth, getUserById } from "../controllers/userController.js"
 // import { authenticateJWT } from "../middlewares/authMiddleware";
 
 const router = express.Router();
@@ -20,5 +20,7 @@ router.get(
 
 // 更新使用者資料 //還沒寫update的部份
 // router.put("/profile", authenticateJWT, updateUserProfile);
+
+router.get("/getUserById/:id", getUserById);
 
 export default router;

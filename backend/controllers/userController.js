@@ -11,3 +11,12 @@ export const googleAuth = async (req, res, next) => {
         next(err);
     }
 }
+
+export const getUserById = async (req, res) => {
+    try{
+        const user = await UserService.getUserById(req.params.id);
+        res.status(200).json(user);
+    }catch(err){
+        res.status(500).json({ error: err.message });
+    }
+}

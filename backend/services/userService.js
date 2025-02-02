@@ -1,9 +1,9 @@
-import userRepository from "../repositories/userRepository.js";
+import UserRepository from "../repositories/userRepository.js";
 import {generateToken} from "../utils/jwt.js";
 
 class UserService{
     async createUserAndGenerateToken(userData){
-        let user = await userRepository.findUserByEmail(userData.email);
+        let user = await UserRepository.getUserByEmail(userData.email);
         let isNewUser = false;
 
         if(!user){
@@ -12,11 +12,15 @@ class UserService{
                 name: userData.displayName,
                 email: userData.email
             }
-            user = await userRepository.createUser(newUser);
+            user = await UserRepository.createUser(newUser);
         }
         // 產生JWT
         const token = generateToken(user);
         return { isNewUser, token };
+    }
+
+    async getUserById(id){
+        return await UserRepository.getUserById(id);
     }
 }
 

@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/api/sessions", sessionsRoutes);
 app.use("/api/materials", materialsRoutes);
+app.use("/api/users", usersRoutes)
 app.use("/api/auth", usersRoutes);
 
 const startServer = async () => {
