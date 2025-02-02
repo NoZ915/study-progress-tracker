@@ -10,6 +10,7 @@ import SessionsPage from '../pages/SessionsPage.jsx';
 import LonginPage from '../pages/LoginPage.jsx';
 import { AuthProvider } from '../contexts/AuthProvider.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import AuthRedirect from '../pages/AuthRedirect.jsx';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LonginPage />
+      },
+      {
+        path: "/auth",
+        element: <AuthRedirect />
       }
     ]
   }
