@@ -1,15 +1,17 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { createTheme, MantineProvider } from '@mantine/core';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { createTheme, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 
 import App from './App.jsx'
+import { AuthProvider } from '../contexts/AuthProvider.jsx';
+import ProtectedRoute from '../components/ProtectedRoute.jsx';
 import MaterialsPage from '../pages/MaterialsPage.jsx';
 import SessionsPage from '../pages/SessionsPage.jsx';
-import LonginPage from '../pages/LoginPage.jsx';
-import { AuthProvider } from '../contexts/AuthProvider.jsx';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import LoginPage from '../pages/LoginPage.jsx';
 import AuthRedirect from '../pages/AuthRedirect.jsx';
 import EditProfilePage from '../pages/EdiProfilePage.jsx';
 
@@ -20,28 +22,19 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      { path: "/", element: <MaterialsPage />, index: true },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/auth", element: <AuthRedirect /> },
+
+      // 受保護的route（未登入無法瀏覽）
       {
-        path: "/",
-        element: <MaterialsPage />,
-        index: true
+        element: <ProtectedRoute />,
+        children: [
+          { path: "/sessions/:materialId", element: <SessionsPage /> },
+          { path: "/edit-profile", element: <EditProfilePage /> },
+        ],
       },
-      {
-        path: "/sessions/:materialId",
-        element: <SessionsPage />
-      },
-      {
-        path: "/login",
-        element: <LonginPage />
-      },
-      {
-        path: "/auth",
-        element: <AuthRedirect />
-      },
-      {
-        path: "/edit-profile",
-        element: <EditProfilePage />
-      }
-    ]
+    ],
   }
 ])
 
@@ -57,6 +50,7 @@ createRoot(document.getElementById('root')).render(
       <StrictMode>
         <GoogleOAuthProvider clientId={clientId}>
           <AuthProvider>
+            <Notifications />
             <RouterProvider router={router} />
           </AuthProvider>
         </GoogleOAuthProvider>
