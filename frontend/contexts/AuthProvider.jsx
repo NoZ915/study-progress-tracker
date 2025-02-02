@@ -2,7 +2,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../hooks/users/useAuth";
 import { setAuthToken } from "../apis/axiosInstance.js";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -15,9 +15,7 @@ export function AuthProvider({ children }) {
             setAuthToken(jwt);
             setUser(jwtDecode(jwt));
         }
-    }, []);
+    }, [setUser]);
 
     return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 }
-
-export const useAuthContext = () => useContext(AuthContext);

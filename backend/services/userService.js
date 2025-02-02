@@ -1,4 +1,3 @@
-import User from "../models/Users.js";
 import userRepository from "../repositories/userRepository.js";
 import {generateToken} from "../utils/jwt.js";
 
@@ -9,10 +8,10 @@ class UserService{
 
         if(!user){
             isNewUser = true;
-            const newUser = new User({
+            const newUser = {
                 name: userData.displayName,
                 email: userData.email
-            })
+            }
             user = await userRepository.createUser(newUser);
         }
         // 產生JWT

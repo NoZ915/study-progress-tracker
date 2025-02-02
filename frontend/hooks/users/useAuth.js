@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {setAuthToken } from "../../apis/axiosInstance";
+import { setAuthToken } from "../../apis/axiosInstance";
 
 export const useAuth = () => {
     const [user, setUser] = useState(null);
@@ -14,5 +14,5 @@ export const useAuth = () => {
         setUser(null);
     };
 
-    return { user, loginWithGoogle, logout };
+    return { user, setUser, loginWithGoogle, logout };
 }

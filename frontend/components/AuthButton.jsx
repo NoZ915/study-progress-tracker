@@ -1,5 +1,5 @@
 import { Button, Avatar, Group, Text } from "@mantine/core";
-import { useAuthContext } from "../contexts/AuthProvider";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useAuth } from "../hooks/users/useAuth";
 
 function AuthButton() {
