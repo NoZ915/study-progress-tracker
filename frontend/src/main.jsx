@@ -11,6 +11,7 @@ import LonginPage from '../pages/LoginPage.jsx';
 import { AuthProvider } from '../contexts/AuthProvider.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import AuthRedirect from '../pages/AuthRedirect.jsx';
+import EditProfilePage from '../pages/EdiProfilePage.jsx';
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         element: <AuthRedirect />
+      },
+      {
+        path: "/edit-profile",
+        element: <EditProfilePage />
       }
     ]
   }
