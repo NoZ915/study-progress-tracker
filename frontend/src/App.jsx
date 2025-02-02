@@ -3,13 +3,13 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import './App.css'
 
-import AuthButton from "../components/AuthButton";
+import Navbar from "../components/Navbar";
 
 function App() {
   return (
     <>
+      <Navbar />
       <Outlet />
-      <AuthButton />
     </>
   )
 }
