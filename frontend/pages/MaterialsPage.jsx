@@ -8,8 +8,8 @@ function MaterialsPage() {
 
     return (
         <Container>
-            <Text size="xl" weight={700} align="center" mb="md">
-                Materials List
+            <Text size="xl" fw={900} align="center" mb="md">
+                講義清單
             </Text>
 
             {!isLoading ? (

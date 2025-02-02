@@ -1,33 +1,44 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Group, Button, Container, Image } from "@mantine/core";
+import { Group, Container } from "@mantine/core";
 import { jwtDecode } from "jwt-decode";
+import { useGetUserById } from "../hooks/users/useGetUserById.js";
+import styles from "./Navbar.module.css"
 import NavbarLogin from "./NavbarLogin";
 import NavbarLogout from "./NavbarLogout";
 
 function Navbar() {
   const [user, setUser] = useState(null);
-
+  const storedUser = localStorage.getItem("jwt");
+  const userId = storedUser ? jwtDecode(storedUser).id : null;
+  const { data } = useGetUserById(userId);
   useEffect(() => {
-    const storedUser = localStorage.getItem("jwt");
-    if (storedUser) {
-      setUser(jwtDecode(storedUser));
+    if (data) {
+      setUser(data);
     }
-  }, []);
+  }, [data]);
 
   return (
-    <header>
-      <Container>
-        <Group position="apart" py="md">
-          <Link to="/">
-            <Image src="/images/logo.png" alt="Logo" height={40} />
-          </Link>
-
-          <Group spacing="md">
-            <Button component={Link} to="/">講義清單</Button>
-            {user ? ( <NavbarLogin user={user} /> ): ( <NavbarLogout user={user} /> )}
+    <header className={styles.header}>
+      <Container size="md">
+        <div className={styles.inner}>
+          <Group spacing="md" className={styles.navbargroup}>
+            {/* <Link to="/">
+              <Image src="/images/logo.png" alt="Logo" className={styles.logo} />
+            </Link> */}
+            {/* <Link
+              to="/"
+              className={styles.link}
+              size="md"
+              radius="md"
+            >
+              講義清單
+            </Link> */}
           </Group>
-        </Group>
+          <Group spacing="md">
+            {user ? (<NavbarLogin user={user} />) : (<NavbarLogout user={user} />)}
+          </Group>
+        </div>
       </Container>
     </header>
   );

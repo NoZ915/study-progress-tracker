@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
 import { Menu, Avatar, Text, Group } from "@mantine/core";
 import PropTypes from 'prop-types';
+import { FaChevronDown } from "react-icons/fa";
 
-function NavbarLogin({user}) {
+function NavbarLogin({ user }) {
   return (
     <>
-      <Menu width={200} shadow="md">
+      <Menu width={140} shadow="md">
         <Menu.Target>
-          <Group spacing="xs" style={{ cursor: "pointer" }}>
+          <Group style={{ cursor: "pointer" }}>
             <Avatar src={user.avatar} radius="xl" />
-            <Text>{user.name}</Text>
+            <div style={{ flex: 1 }}>
+              <Text size="md" fw={500}>{user.name}</Text>
+            </div>
+            <FaChevronDown size={12} />
           </Group>
         </Menu.Target>
 
