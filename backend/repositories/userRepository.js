@@ -1,18 +1,15 @@
 import User from '../models/Users.js'
 
 class UserRepository{
-    async findOrCreateUser(userData){
-        const validUserData = {
-            name: userData.displayName,
-            email: userData.email
-        }
-        console.log("validUserData", validUserData)
-        const [user] = await User.findOrCreate({
-            where: {email: userData.email},
-            defaults: validUserData
+    async findUserByEmail(email){
+        return await User.findOne({
+            where: { email }
         });
-        console.log("repo user", user)
-        return user;
+    }
+
+    async createUser(user){
+        return await User.create(user);
+
     }
 }
 

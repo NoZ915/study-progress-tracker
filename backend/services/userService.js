@@ -1,13 +1,23 @@
+import User from "../models/Users.js";
 import userRepository from "../repositories/userRepository.js";
 import {generateToken} from "../utils/jwt.js";
 
 class UserService{
     async createUserAndGenerateToken(userData){
-        console.log("UserDataaaaaaaaaaaaaaaa",userData)
-        const user = await userRepository.findOrCreateUser(userData);
-        const token = generateToken(userData);
+        let user = await userRepository.findUserByEmail(userData.email);
+        let isNewUser = false;
 
-        return { user, token };
+        if(!user){
+            isNewUser = true;
+            const newUser = new User({
+                name: userData.displayName,
+                email: userData.email
+            })
+            user = await userRepository.createUser(newUser);
+        }
+        // 產生JWT
+        const token = generateToken(user);
+        return { isNewUser, token };
     }
 }
 
