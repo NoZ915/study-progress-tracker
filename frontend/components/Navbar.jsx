@@ -1,16 +1,16 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Group, Container } from "@mantine/core";
-import { jwtDecode } from "jwt-decode";
 import { useGetUserById } from "../hooks/users/useGetUserById.js";
+import { useAuthContext } from "../hooks/useAuthContext.js";
 import styles from "./Navbar.module.css"
 import NavbarLogin from "./NavbarLogin";
 import NavbarLogout from "./NavbarLogout";
 
 function Navbar() {
   const [user, setUser] = useState(null);
-  const storedUser = localStorage.getItem("jwt");
-  const userId = storedUser ? jwtDecode(storedUser).id : null;
+  const storedUser = useAuthContext();
+  const userId = storedUser ? storedUser.id : null;
   const { data } = useGetUserById(userId);
   useEffect(() => {
     if (data) {
@@ -26,14 +26,14 @@ function Navbar() {
             {/* <Link to="/">
               <Image src="/images/logo.png" alt="Logo" className={styles.logo} />
             </Link> */}
-            {/* <Link
+            <Link
               to="/"
               className={styles.link}
               size="md"
               radius="md"
             >
               講義清單
-            </Link> */}
+            </Link>
           </Group>
           <Group spacing="md">
             {user ? (<NavbarLogin user={user} />) : (<NavbarLogout user={user} />)}

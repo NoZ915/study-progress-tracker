@@ -7,13 +7,13 @@ import { createTheme, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 
 import App from './App.jsx'
-import { AuthProvider } from '../contexts/AuthProvider.jsx';
+import AuthProvider from '../contexts/AuthProvider.jsx';
 import ProtectedRoute from '../components/ProtectedRoute.jsx';
 import MaterialsPage from '../pages/MaterialsPage.jsx';
 import SessionsPage from '../pages/SessionsPage.jsx';
 import LoginPage from '../pages/LoginPage.jsx';
 import AuthRedirect from '../pages/AuthRedirect.jsx';
-import EditProfilePage from '../pages/EdiProfilePage.jsx';
+import EditProfilePage from '../pages/EditProfilePage.jsx';
 
 const queryClient = new QueryClient();
 

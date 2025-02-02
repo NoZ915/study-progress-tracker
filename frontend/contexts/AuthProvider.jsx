@@ -1,12 +1,12 @@
 //Note: context資料夾可以放例如AuthProvider, ThemeProvider, NotificationProvider（全域性）
+import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import PropTypes from 'prop-types';
 import { useAuth } from "../hooks/users/useAuth";
 import { setAuthToken } from "../apis/axiosInstance.js";
-import { createContext, useEffect } from "react";
+import { AuthContext } from "../hooks/useAuthContext.js";
 
-const AuthContext = createContext();
-
-export function AuthProvider({ children }) {
+function AuthProvider({ children }) {
     const { user, setUser } = useAuth();
 
     useEffect(() => {
@@ -17,5 +17,12 @@ export function AuthProvider({ children }) {
         }
     }, [setUser]);
 
+
     return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 }
+
+AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired
+};
+
+export default AuthProvider;
