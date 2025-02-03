@@ -1,6 +1,6 @@
 import express from "express";
 import passport from "passport";
-import { googleAuth, getUserById } from "../controllers/userController.js"
+import { googleAuth, getUserById, createUser, updateUser } from "../controllers/userController.js"
 // import { authenticateJWT } from "../middlewares/authMiddleware";
 
 const router = express.Router();
@@ -22,5 +22,7 @@ router.get(
 // router.put("/profile", authenticateJWT, updateUserProfile);
 
 router.get("/getUserById/:id", getUserById);
+router.post("/createUser", createUser);
+router.put("/updateUser/:id", updateUser);
 
 export default router;

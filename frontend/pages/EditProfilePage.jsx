@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, TextInput, Select, Textarea, Group, Avatar, Text } from '@mantine/core';
 import { useAuthContext } from '../hooks/useAuthContext.js';
 import { useGetUserById } from '../hooks/users/useGetUserById.js';
+import { useUpdateUser } from '../hooks/users/useUpdateUser.js';
 import { regions, groups } from '../utils/editProfileList.js';
 import styles from './EditProfilePage.module.css';
 import ConfirmCancelModal from '../components/ConfirmCancelModal.jsx';
@@ -15,6 +16,7 @@ const EditProfilePage = () => {
 
     const navigate = useNavigate();
 
+    const [userId, setUserId] = useState('')
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [group, setGroup] = useState('');
@@ -26,6 +28,7 @@ const EditProfilePage = () => {
 
     useEffect(() => {
         if (data) {
+            setUserId(user.id || '')
             setEmail(data.email || '');
             setName(data.name || '');
             setGroup(data.group || '');
@@ -34,7 +37,9 @@ const EditProfilePage = () => {
             setDetail(data.detail || '');
             setAvatar(data.avatar || '');
         }
-    }, [data]);
+    }, [data, user]);
+
+    const { mutate } = useUpdateUser();
 
     const handleSubmit = () => {
         const userData = {
@@ -46,7 +51,7 @@ const EditProfilePage = () => {
             detail,
             avatar,
         };
-        createOrUpdateUser(userData);
+        mutate({ id: userId, userData: userData });
     };
     const handleCancel = () => {
         setOpenCancelModal(true);
