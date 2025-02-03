@@ -1,0 +1,8 @@
+.container {
+  padding-bottom: 20px;
+  text-align: left;
+}
+
+.container>* {
+  margin-bottom: 15px;
+}
