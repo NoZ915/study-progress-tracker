@@ -10,7 +10,7 @@ function ProtectedRoute() {
     useEffect(() => {
         if (!token) {
             notifications.show({
-                title: "尚未登入", 
+                title: "尚未登入",
                 message: "請先登入帳號",
                 color: "red",
             })
@@ -21,7 +21,7 @@ function ProtectedRoute() {
         // 設置replace，讓user按返回鍵時不會再到之前那個頁面
         // eg 購物車按下購買確認按鍵後，會導向完成購買頁面
         //    若有設置replace，則當使用者按下返回鍵，便不會又回到購物車頁面
-        return <Navigate to="/login" state={{ from: location }} replace />
+        return <Navigate to="/" state={{ from: location }} replace />
     }
 
     return (

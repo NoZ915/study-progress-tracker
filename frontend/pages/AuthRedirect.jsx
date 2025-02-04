@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Center, Paper, Text, Loader } from "@mantine/core"
+import { Center, Loader } from "@mantine/core"
 
 function AuthRedirect() {
     const navigate = useNavigate();
