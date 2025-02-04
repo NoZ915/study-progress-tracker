@@ -11,7 +11,6 @@ import AuthProvider from '../contexts/AuthProvider.jsx';
 import ProtectedRoute from '../components/ProtectedRoute.jsx';
 import MaterialsPage from '../pages/MaterialsPage.jsx';
 import SessionsPage from '../pages/SessionsPage.jsx';
-import LoginPage from '../pages/LoginPage.jsx';
 import AuthRedirect from '../pages/AuthRedirect.jsx';
 import EditProfilePage from '../pages/EditProfilePage.jsx';
 
@@ -23,7 +22,6 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <MaterialsPage />, index: true },
-      { path: "/login", element: <LoginPage /> },
       { path: "/auth", element: <AuthRedirect /> },
 
       // 受保護的route（未登入無法瀏覽）

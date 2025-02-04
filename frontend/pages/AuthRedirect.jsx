@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Center, Paper, Text, Loader } from "@mantine/core"
 
-function AuthRedirect(){
+function AuthRedirect() {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -11,26 +11,18 @@ function AuthRedirect(){
         const isNewUser = params.get("isNewUser") === "true"; //用這方法轉成布林值超酷！
 
         // 把JWT token存進localStorage
-        if(token) localStorage.setItem("jwt", token);
+        if (token) localStorage.setItem("jwt", token);
 
-        // 欺騙user 讓user感覺我們有在幫他做登入的動作
-        setTimeout(() => {
-            if(isNewUser) navigate("/edit-profile");
-            else navigate("/");
-        }, 1500);
+        // NewUser導向"/edit-profile"填寫個資
+        // OldUser導向"/"回首頁
+        if (isNewUser) navigate("/edit-profile");
+        else navigate("/");
 
     }, [navigate])
 
-    return(
-        <Center style={{ height: "100vh", flexDirection: "column" }}>
-            <Paper shadow="md" p="xl" radius="md">
-                <Text align="center" size="lg" weight={500}>
-                    正在登入中，請稍候...
-                </Text>
-                <Center mt="md">
-                    <Loader color="blue" size="lg" />
-                </Center>
-            </Paper>
+    return (
+        <Center mt="md">
+            <Loader color="blue" size="lg" />
         </Center>
     )
 }

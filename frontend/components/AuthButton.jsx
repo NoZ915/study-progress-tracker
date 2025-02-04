@@ -1,4 +1,4 @@
-import { Button, Avatar, Group, Text } from "@mantine/core";
+import { Button, Group } from "@mantine/core";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useAuth } from "../hooks/users/useAuth";
 
@@ -10,16 +10,12 @@ function AuthButton() {
     <Group>
       {!user ? (
         <Button onClick={loginWithGoogle} color="blue">
-          使用 Google 登入
+          登入
         </Button>
       ) : (
-        <>
-          <Avatar src={user.picture} radius="xl" />
-          <Text>{user.name}</Text>
-          <Button onClick={logout} color="red">
-            登出
-          </Button>
-        </>
+        <Button onClick={logout} color="red">
+          登出
+        </Button>
       )}
     </Group>
   );

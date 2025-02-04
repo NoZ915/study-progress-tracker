@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Menu, Avatar, Text, Group } from "@mantine/core";
 import PropTypes from 'prop-types';
 import { FaChevronDown } from "react-icons/fa";
+import AuthButton from "./AuthButton";
 
 function NavbarLogin({ user }) {
   return (
@@ -21,6 +22,8 @@ function NavbarLogin({ user }) {
           <Menu.Item component={Link} to="/edit-profile">編輯個人資料</Menu.Item>
         </Menu.Dropdown>
       </Menu>
+
+      <AuthButton />
     </>
   )
 }

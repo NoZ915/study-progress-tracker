@@ -7,13 +7,19 @@ export const useAuth = () => {
     const [user, setUser] = useState(null);
 
     const loginWithGoogle = () => {
-        window.location.href = "http://localhost:8080/api/auth/google";
+        window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/google`;
     }
 
     const logout = () => {
         localStorage.removeItem("jwt");
         setAuthToken(null);
         setUser(null);
+        // 手動觸發 storage 事件，讓其他地方知道 jwt 變了
+        window.dispatchEvent(new Event("storage"));
+
+        // 重新整理頁面
+        window.location.href = "/"
+
     };
 
     return { user, setUser, loginWithGoogle, logout };

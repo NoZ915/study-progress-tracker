@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
-import { Button } from "@mantine/core";
+import AuthButton from "./AuthButton";
 
-function NavbarLogout(){
-    return(
+function NavbarLogout() {
+    return (
         <>
-            <Button component={Link} to="/login">登入</Button>
+            <AuthButton />
         </>
     )
 }
