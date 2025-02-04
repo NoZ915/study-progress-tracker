@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetAllSessionsByMaterialId } from "../hooks/sessions/useGetAllSessionsByMaterialId.js";
-import { Button, Card, Checkbox, Group, Loader, Stack, Text } from "@mantine/core";
+import { Button, Card, Group, Loader, Stack, Text } from "@mantine/core";
 import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
 import EditSessionMaodal from "../components/EditSessionModal.jsx";
@@ -27,11 +27,11 @@ function SessionPage() {
               <Card shadow="sm" mb="md" padding="md" radius="md" withBorder key={session.session_id}>
                 <Group justify="space-between" gap="xl">
                   <Group>
-                    <Checkbox
+                    {/* <Checkbox
                       color="lime.4"
                       iconColor="dark.8"
                       size="md"
-                    />
+                    /> */}
                     <Stack align="flex-start">
                       <Text fw={700} size="lg">{session.session_name}</Text>
                       <Text>完成日期</Text>
