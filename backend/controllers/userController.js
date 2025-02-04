@@ -38,7 +38,6 @@ export const updateUser = async (req, res) => {
         }
 
         const updatedUser = await UserService.updateUser(user, req.body);
-        console.log(updatedUser);
         res.status(200).json(updatedUser);
     } catch (err) {
         res.status(500).json({ error: err.message });

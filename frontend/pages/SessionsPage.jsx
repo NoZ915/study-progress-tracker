@@ -13,7 +13,6 @@ function SessionPage() {
 
   const handleEdit = (session) => {
     setEditSession(session);
-    console.log(editSession)
   }
   const handleClose = () => {
     setEditSession(null);
