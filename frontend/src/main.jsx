@@ -13,6 +13,7 @@ import MaterialsPage from '../pages/MaterialsPage.jsx';
 import SessionsPage from '../pages/SessionsPage.jsx';
 import AuthRedirect from '../pages/AuthRedirect.jsx';
 import EditProfilePage from '../pages/EditProfilePage.jsx';
+import OAuthCallbackPage from '../pages/OAuthCallbackPage.jsx';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <MaterialsPage />, index: true },
       { path: "/auth", element: <AuthRedirect /> },
+      { path: "/auth/google/callback", element: <OAuthCallbackPage /> },
 
       // 受保護的route（未登入無法瀏覽）
       {
