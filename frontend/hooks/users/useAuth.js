@@ -20,6 +20,7 @@ export const useAuth = () => {
         // 重新整理頁面
         window.location.href = "/"
 
+        localStorage.removeItem("oauthHandled");
     };
 
     return { user, setUser, loginWithGoogle, logout };

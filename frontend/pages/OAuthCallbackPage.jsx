@@ -10,8 +10,9 @@ function OAuthCallbackPage() {
     // 取得網址中的 ?code=xxxxx
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
-
-    if (code) {
+    if (code && !localStorage.getItem("oauthHandled")) {
+      // 防止reload又呼叫一次
+      localStorage.setItem("oauthHandled", "true");
       // 拆出去變一個hook
       fetch(`${import.meta.env.VITE_API_BASE_URL}/users/googleAuth`, {
         method: "POST",
@@ -21,20 +22,11 @@ function OAuthCallbackPage() {
         .then((res) => res.json())
         .then((data) => {
           if (data.token) {
-            if (data.isNewUser) {
-              // 儲存 JWT Token
-              localStorage.setItem("jwt", data.token);
-              setUser(data.user);
-              window.location.reload();
-              navigate("/edit-profile");
-            }
-            else {
-              // 儲存 JWT Token
-              localStorage.setItem("jwt", data.token);
-              setUser(data.user);
-              window.location.reload();
-              navigate("/");
-            }
+            // 儲存 JWT Token
+            localStorage.setItem("jwt", data.token);
+            setUser(data.user);
+            // navigate("/");
+            window.location.reload();
           } else {
             console.error("OAuth 登入失敗:");
             navigate("/");
