@@ -36,12 +36,12 @@ function OAuthCallbackPage() {
               navigate("/");
             }
           } else {
-            console.error("OAuth 登入失敗:", data.error);
+            console.error("OAuth 登入失敗:");
             navigate("/");
           }
         })
-        .catch((error) => {
-          console.error("請求錯誤:", error);
+        .catch(() => {
+          console.error("請求錯誤:");
           navigate("/");
         });
     } else {
