@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/users/useAuth";
 
 function OAuthCallbackPage() {
   const navigate = useNavigate();
+  const { setUser } = useAuth();
 
   useEffect(() => {
     // 取得網址中的 ?code=xxxxx
@@ -19,11 +21,20 @@ function OAuthCallbackPage() {
         .then((res) => res.json())
         .then((data) => {
           if (data.token) {
-            // 儲存 JWT Token
-            localStorage.setItem("token", data.token);
-
-            // 轉跳到首頁或使用者頁面
-            navigate("/");
+            if (data.isNewUser) {
+              // 儲存 JWT Token
+              localStorage.setItem("jwt", data.token);
+              setUser(data.user);
+              window.location.reload();
+              navigate("/edit-profile");
+            }
+            else {
+              // 儲存 JWT Token
+              localStorage.setItem("jwt", data.token);
+              setUser(data.user);
+              window.location.reload();
+              navigate("/");
+            }
           } else {
             console.error("OAuth 登入失敗:", data.error);
             navigate("/");
@@ -37,7 +48,7 @@ function OAuthCallbackPage() {
       console.error("未獲取到授權碼");
       navigate("/");
     }
-  }, [navigate]);
+  }, []);
 
   return <div>正在處理 Google 登入...</div>;
 }

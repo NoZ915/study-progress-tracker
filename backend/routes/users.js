@@ -11,12 +11,7 @@ router.get(
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
-// Google OAuth callbacks
-router.get(
-  "/google/callback",
-  passport.authenticate("google", { session: false }),
-  googleAuth
-);
+router.post("/googleAuth", googleAuth);
 
 // 更新使用者資料 //還沒寫update的部份
 // router.put("/profile", authenticateJWT, updateUserProfile);

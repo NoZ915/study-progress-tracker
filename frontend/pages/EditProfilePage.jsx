@@ -28,7 +28,7 @@ const EditProfilePage = () => {
 
     useEffect(() => {
         if (data) {
-            setUserId(user.id || '')
+            setUserId(data.id || '')
             setEmail(data.email || '');
             setName(data.name || '');
             setGroup(data.group || '');

@@ -7,6 +7,8 @@ function ProtectedRoute() {
     const token = localStorage.getItem("jwt");
     const location = useLocation();
 
+    // 這裡可能要修正，用token去找user
+    // 否則有心人士可能會設置假token，一樣進得去
     useEffect(() => {
         if (!token) {
             notifications.show({
