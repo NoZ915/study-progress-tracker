@@ -4,7 +4,7 @@ class SessionRepository {
   async getAll() {
     return await Session.findAll();
   }
-  async getSessionsByMaterialId(materialId){
+  async getSessionsByMaterialId(materialId) {
     return await Session.findAll({
       where: {
         material_id: Number(materialId)

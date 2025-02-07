@@ -1,5 +1,6 @@
 import "dotenv/config";
 import "./utils/passport.js";
+import "./models/index.js";
 import cors from "cors";
 import express from "express";
 import passport from "passport";
