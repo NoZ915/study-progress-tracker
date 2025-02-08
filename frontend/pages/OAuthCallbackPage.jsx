@@ -37,7 +37,6 @@ function OAuthCallbackPage() {
           navigate("/");
         });
     } else {
-      console.error("未獲取到授權碼");
       navigate("/");
     }
   }, []);

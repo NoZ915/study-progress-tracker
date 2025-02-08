@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
         if (userData) {
             setUser(userData);
         }
-    }, [setUser, userData, user]);
+    }, [setUser, userData]);
 
     return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 }
