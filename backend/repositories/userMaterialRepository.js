@@ -1,4 +1,4 @@
-import { UserMaterials } from "../models"
+import { UserMaterials } from "../models/UserMaterials.js"
 
 class UserMaterialRepository {
   async findLatestAttempt(user_id, material_id) {

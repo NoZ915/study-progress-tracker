@@ -1,4 +1,4 @@
-import UserMaterialRepository from "../repositories/userMaterialRepository";
+import UserMaterialRepository from "../repositories/userMaterialRepository.js";
 
 
 class UserMaterialService {

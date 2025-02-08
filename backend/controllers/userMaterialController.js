@@ -1,4 +1,4 @@
-import UserMaterialService from "../services/userMaterialService";
+import UserMaterialService from "../services/userMaterialService.js";
 
 export const createNewUserMaterial = async (req, res) => {
   try {
