@@ -3,7 +3,13 @@
 }
 
 .card:hover {
-    background-color: red;
     transform: scale(1.01);
     box-shadow: var(--mantine-shadow-md);
+}
+
+.text {
+    align-items: center;
+    color: black;
+    font-weight: 500;
+    font-size: large;
 }
