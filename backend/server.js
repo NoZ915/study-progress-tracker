@@ -8,6 +8,7 @@ import { sequelize } from "./database.js";
 import sessionsRoutes from "./routes/sessions.js";
 import materialsRoutes from "./routes/materials.js"
 import usersRoutes from "./routes/users.js";
+import userMaterialsRoutes from "./routes/userMaterials.js";
 
 const app = express();
 app.use(cors());
@@ -24,6 +25,7 @@ app.use("/api/sessions", sessionsRoutes);
 app.use("/api/materials", materialsRoutes);
 app.use("/api/users", usersRoutes)
 app.use("/api/auth", usersRoutes);
+app.use("/api/userMaterials", userMaterialsRoutes)
 
 const startServer = async () => {
   try {
