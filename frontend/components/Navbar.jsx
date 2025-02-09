@@ -1,23 +1,13 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { Group, Container } from "@mantine/core";
-import { useGetUserById } from "../hooks/users/useGetUserById.js";
 import { useAuthContext } from "../hooks/useAuthContext.js";
 import styles from "./Navbar.module.css"
 import NavbarLogin from "./NavbarLogin";
 import NavbarLogout from "./NavbarLogout";
 
 function Navbar() {
-  const [user, setUser] = useState(null);
-  const storedUser = useAuthContext();
-  const userId = storedUser ? storedUser.id : null;
-  const { data } = useGetUserById(userId);
-  useEffect(() => {
-    if (data) {
-      setUser(data);
-    }
-  }, [data]);
-
+  const user = useAuthContext();
+  
   return (
     <header className={styles.header}>
       <Container size="md">
