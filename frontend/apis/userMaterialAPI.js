@@ -7,3 +7,8 @@ export const createNewUserMaterial = async (user_id, material_id) => {
   });
   return response.data;
 }
+
+export const getAllUserMaterialsByUserId = async (user_id) => {
+  const response = await axiosInstance.get(`/userMaterials/getAllUserMaterials/${user_id}`);
+  return response.data;
+}

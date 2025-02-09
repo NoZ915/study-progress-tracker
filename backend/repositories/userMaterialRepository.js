@@ -1,3 +1,4 @@
+import { getAllUserMaterialsByUserId } from "../controllers/userMaterialController.js";
 import { UserMaterials } from "../models/UserMaterials.js"
 
 class UserMaterialRepository {
@@ -19,6 +20,15 @@ class UserMaterialRepository {
       user_id,
       material_id,
       attempt_number
+    })
+  }
+
+  async getAllUserMaterialsByUserId(user_id){
+    let a = await UserMaterials.findAll({
+      where: { user_id: user_id }
+    })
+    return await UserMaterials.findAll({
+      where: { user_id: user_id }
     })
   }
 }

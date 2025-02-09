@@ -14,6 +14,10 @@ class UserMaterialService {
       newAttemptNumber
     )
   }
+
+  async getAllUserMaterialsByUserId(user_id){
+    return await UserMaterialRepository.getAllUserMaterialsByUserId(user_id);
+  }
 }
 
 export default new UserMaterialService;
