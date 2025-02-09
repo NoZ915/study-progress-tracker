@@ -1,7 +1,7 @@
 import { Card, Loader } from "@mantine/core";
 import { useGetAllUserMaterialsByUserId } from "../hooks/userMaterials/useGetAllUserMaterialsByUserId";
 import { jwtDecode } from "jwt-decode";
-import UserMaterialCard from "../components/UserMaterialCard.jsx";
+// import UserMaterialCard from "../components/UserMaterialCard.jsx";
 
 
 function ProgressesPage(){
@@ -16,7 +16,7 @@ function ProgressesPage(){
                     {userMaterials.map((userMaterial) => {
                         return(
                             <Card key={userMaterial.user_material_id}>
-                                <UserMaterialCard userMaterial={userMaterial}/>
+                                {/* <UserMaterialCard userMaterial={userMaterial}/> */}
                                 {/* 用userMaterial中的material_id取得講義資訊 */}
                             </Card>
                         )
