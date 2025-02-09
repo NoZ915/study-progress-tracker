@@ -1,4 +1,5 @@
 import { getAllUserMaterialsByUserId } from "../controllers/userMaterialController.js";
+import { Material } from "../models/Material.js";
 import { UserMaterials } from "../models/UserMaterials.js"
 
 class UserMaterialRepository {
@@ -24,11 +25,15 @@ class UserMaterialRepository {
   }
 
   async getAllUserMaterialsByUserId(user_id){
-    let a = await UserMaterials.findAll({
-      where: { user_id: user_id }
-    })
     return await UserMaterials.findAll({
-      where: { user_id: user_id }
+      where: { user_id: user_id },
+      include: [
+        {
+          model: Material,
+          as: "material",
+          attributes: ["title", "image_url"]
+        }
+      ]
     })
   }
 }

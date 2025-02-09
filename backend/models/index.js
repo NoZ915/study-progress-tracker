@@ -9,7 +9,7 @@ User.hasMany(UserMaterials, { foreignKey: "user_id" });
 Material.hasMany(UserMaterials, { foreignKey: "material_id" });
 
 UserMaterials.belongsTo(User, { foreignKey: "user_id" });
-UserMaterials.belongsTo(Material, { foreignKey: "material_id" });
+UserMaterials.belongsTo(Material, { foreignKey: "material_id", as: "material" });
 UserMaterials.hasMany(Progress, { foreignKey: "user_material_id" });
 
 Progress.belongsTo(UserMaterials, { foreignKey: "user_material_id" });
