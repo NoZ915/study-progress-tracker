@@ -7,7 +7,7 @@ import NavbarLogout from "./NavbarLogout";
 
 function Navbar() {
   const user = useAuthContext();
-  
+
   return (
     <header className={styles.header}>
       <Container size="md">
@@ -16,7 +16,7 @@ function Navbar() {
             <Link to="/" className={styles.link} size="md" radius="md">
               講義清單
             </Link>
-            <Link to="/progresses" className={styles.link} size="md" radius="md">
+            <Link to="/progress" className={styles.link} size="md" radius="md">
               我的進度
             </Link>
           </Group>

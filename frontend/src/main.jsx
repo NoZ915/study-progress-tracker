@@ -13,7 +13,7 @@ import MaterialsPage from '../pages/MaterialsPage.jsx';
 import SessionsPage from '../pages/SessionsPage.jsx';
 import EditProfilePage from '../pages/EditProfilePage.jsx';
 import OAuthCallbackPage from '../pages/OAuthCallbackPage.jsx';
-import ProgressesPage from '../pages/ProgressesPage.jsx';
+import ProgressPage from '../pages/ProgressPage.jsx';
 
 const queryClient = new QueryClient();
 
@@ -29,9 +29,9 @@ const router = createBrowserRouter([
       {
         element: <ProtectedRoute />,
         children: [
-          { path: "/sessions/:materialId", element: <SessionsPage /> },
+          { path: "/progress/material/:material_id", element: <SessionsPage /> },
           { path: "/edit-profile", element: <EditProfilePage /> },
-          { path: "/progresses", element: <ProgressesPage /> },
+          { path: "/progress", element: <ProgressPage /> },
         ],
       },
     ],

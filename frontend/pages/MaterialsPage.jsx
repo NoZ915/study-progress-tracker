@@ -13,10 +13,10 @@ function MaterialsPage() {
 
     const handleCreateUserMaterial = (material_id) => {
         mutate({
-            user_id: user.user_id, 
+            user_id: user.user_id,
             material_id: material_id
         })
-        navigate("/progresses");
+        navigate("/progress");
     }
 
     return (
@@ -46,7 +46,7 @@ function MaterialsPage() {
                                     {material.title}
                                 </Text>
                             </Link>
-                            <Button 
+                            <Button
                                 fullWidth mt="md"
                                 onClick={() => handleCreateUserMaterial(material.material_id)}
                             >

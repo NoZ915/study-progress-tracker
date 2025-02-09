@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Modal } from "@mantine/core";
-import { DatePicker } from '@mantine/dates';
+import { DateInput } from '@mantine/dates';
 
 function EditSessionMaodal({ session, onClose }) {
     return (
@@ -9,11 +9,8 @@ function EditSessionMaodal({ session, onClose }) {
             onClose={onClose}
             title={session.session_name}
         >
-            <div>
-                <DatePicker
-                    label="完成日期"
-                />
-            </div>
+            <DateInput valueFormat="YYYY/MM/DD" label="完成日期" placeholder="選擇日期" />
+            <DateInput valueFormat="YYYY/MM/DD" label="訂正完成日期" placeholder="選擇日期" />
         </Modal>
     )
 }

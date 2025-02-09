@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useGetAllSessionsByMaterialId } from "../hooks/sessions/useGetAllSessionsByMaterialId.js";
 import { Button, Card, Group, Loader, Stack, Text } from "@mantine/core";
 import { FaEdit } from "react-icons/fa";
@@ -6,11 +6,15 @@ import { useState } from "react";
 import EditSessionMaodal from "../components/EditSessionModal.jsx";
 
 function SessionPage() {
-  const { materialId } = useParams();
-  const { data: sessions, isLoading } = useGetAllSessionsByMaterialId(materialId);
+  // 路由參數取得
+  const { material_id } = useParams();
+  const [searchParams] = useSearchParams();
+  const user_material_id = searchParams.get("user_material_id");
 
+  const { data: sessions, isLoading } = useGetAllSessionsByMaterialId(material_id);
+
+  // 編輯的Modal出現/關閉
   const [editSession, setEditSession] = useState(null);
-
   const handleEdit = (session) => {
     setEditSession(session);
   }
@@ -34,8 +38,12 @@ function SessionPage() {
                     /> */}
                     <Stack align="flex-start">
                       <Text fw={700} size="lg">{session.session_name}</Text>
-                      <Text>完成日期</Text>
-                      <Text>訂正完成日期</Text>
+                      <Group>
+                        <Text>完成日期</Text>
+                      </Group>
+                      <Group>
+                        <Text>訂正完成日期</Text>
+                      </Group>
                     </Stack>
                   </Group>
 

@@ -5,9 +5,9 @@ import { UserMaterials } from "../models/UserMaterials.js"
 class UserMaterialRepository {
   async findLatestAttempt(user_id, material_id) {
     const data = await UserMaterials.findOne({
-      where: { 
-        user_id: user_id, 
-        material_id: material_id 
+      where: {
+        user_id: user_id,
+        material_id: material_id
       },
       order: [["attempt_number", "DESC"]],
       attributes: ["attempt_number"],
@@ -24,14 +24,14 @@ class UserMaterialRepository {
     })
   }
 
-  async getAllUserMaterialsByUserId(user_id){
+  async getAllUserMaterialsByUserId(user_id) {
     return await UserMaterials.findAll({
       where: { user_id: user_id },
       include: [
         {
           model: Material,
           as: "material",
-          attributes: ["title", "image_url"]
+          attributes: ["material_id", "title", "image_url"]
         }
       ]
     })
