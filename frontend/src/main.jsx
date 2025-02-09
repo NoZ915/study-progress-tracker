@@ -13,6 +13,7 @@ import MaterialsPage from '../pages/MaterialsPage.jsx';
 import SessionsPage from '../pages/SessionsPage.jsx';
 import EditProfilePage from '../pages/EditProfilePage.jsx';
 import OAuthCallbackPage from '../pages/OAuthCallbackPage.jsx';
+import ProgressesPage from '../pages/ProgressesPage.jsx';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
         children: [
           { path: "/sessions/:materialId", element: <SessionsPage /> },
           { path: "/edit-profile", element: <EditProfilePage /> },
+          { path: "/progresses", element: <ProgressesPage /> },
         ],
       },
     ],

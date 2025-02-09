@@ -23,16 +23,11 @@ function Navbar() {
       <Container size="md">
         <div className={styles.inner}>
           <Group spacing="md" className={styles.navbargroup}>
-            {/* <Link to="/">
-              <Image src="/images/logo.png" alt="Logo" className={styles.logo} />
-            </Link> */}
-            <Link
-              to="/"
-              className={styles.link}
-              size="md"
-              radius="md"
-            >
+            <Link to="/" className={styles.link} size="md" radius="md">
               講義清單
+            </Link>
+            <Link to="/progresses" className={styles.link} size="md" radius="md">
+              我的進度
             </Link>
           </Group>
           <Group spacing="md">

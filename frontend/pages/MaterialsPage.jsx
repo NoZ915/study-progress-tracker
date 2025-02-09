@@ -1,19 +1,22 @@
 import { useGetAllMaterials } from "../hooks/materials/useGetAllMaterials.js";
 import { Container, Text, SimpleGrid, Card, Loader, Image, AspectRatio, Button } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./MaterialsPage.module.css";
 import { useCreateNewUserMaterial } from "../hooks/userMaterials/useCreateNewUserMaterial.js";
 import { useAuthContext } from "../hooks/useAuthContext.js";
 
 function MaterialsPage() {
     const user = useAuthContext();
+    const navigate = useNavigate();
     const { data: materials, isLoading } = useGetAllMaterials();
     const { mutate } = useCreateNewUserMaterial();
+
     const handleCreateUserMaterial = (material_id) => {
         mutate({
             user_id: user.user_id, 
             material_id: material_id
         })
+        navigate("/progresses");
     }
 
     return (
