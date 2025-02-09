@@ -1,7 +1,7 @@
 import { Card, Loader } from "@mantine/core";
 import { useGetAllUserMaterialsByUserId } from "../hooks/userMaterials/useGetAllUserMaterialsByUserId";
 import { jwtDecode } from "jwt-decode";
-import UserMaterialCard from "../components/UserMaterialCard.js";
+import UserMaterialCard from "../components/UserMaterialCard.jsx";
 
 
 function ProgressesPage(){
