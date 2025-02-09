@@ -7,6 +7,10 @@ export const Progress = sequelize.define("Progress", {
     primaryKey: true,
     autoIncrement: true,
   },
+  user_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
   user_material_id: {
     type: DataTypes.INTEGER,
     allowNull: false,

@@ -9,6 +9,7 @@ import sessionsRoutes from "./routes/sessions.js";
 import materialsRoutes from "./routes/materials.js"
 import usersRoutes from "./routes/users.js";
 import userMaterialsRoutes from "./routes/userMaterials.js";
+import progressRoutes from "./routes/progress.js";
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,7 @@ app.use("/api/materials", materialsRoutes);
 app.use("/api/users", usersRoutes)
 app.use("/api/auth", usersRoutes);
 app.use("/api/userMaterials", userMaterialsRoutes)
+app.use("/api/progress", progressRoutes)
 
 const startServer = async () => {
   try {
