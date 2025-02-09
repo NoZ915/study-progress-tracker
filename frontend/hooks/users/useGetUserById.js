@@ -1,4 +1,4 @@
-import QUERY_KEYS from "../queryKeys.js"
+import { QUERY_KEYS } from "../queryKeys.js"
 import { useQuery } from "@tanstack/react-query"
 import { getUserById } from "../../apis/userAPI"
 

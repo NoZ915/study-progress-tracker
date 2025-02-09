@@ -1,4 +1,4 @@
-import QUERY_KEYS from "../queryKeys.js"
+import { QUERY_KEYS } from "../queryKeys.js"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updateUser } from "../../apis/userAPI";
 import { useNavigate } from "react-router-dom";
