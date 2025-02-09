@@ -17,7 +17,7 @@ function AuthProvider({ children }) {
             jwt = jwtDecode(jwt);
             setUserId(jwt.id);
         }
-    }, [setUser, setUserId, user]);
+    }, []);
 
     const { data: userData } = useGetUserById(userId, { enabled: !!userId });
     useEffect(() => {

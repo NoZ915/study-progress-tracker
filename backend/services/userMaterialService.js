@@ -8,12 +8,12 @@ class UserMaterialService {
     let newAttemptNumber = latestAttemptNumber ? latestAttemptNumber + 1 : 1;
 
     // 建立新的UserMaterials
-    return UserMaterialRepository.createUserMaterial({
+    return UserMaterialRepository.createUserMaterial(
       user_id,
       material_id,
       newAttemptNumber
-    })
+    )
   }
 }
 
-export default UserMaterialService;
+export default new UserMaterialService;
