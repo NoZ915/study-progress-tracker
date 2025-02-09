@@ -1,5 +1,5 @@
 import { Container, Loader, SimpleGrid } from "@mantine/core";
-import { useGetAllUserMaterialsByUserId } from "../hooks/userMaterials/useGetAllUserMaterialsByUserId";
+import { useGetAllUserMaterialsByUserId } from "../hooks/userMaterials/useGetAllUserMaterialsByUserId.js";
 import { jwtDecode } from "jwt-decode";
 import UserMaterialCard from "../components/UserMaterialCard.jsx";
 

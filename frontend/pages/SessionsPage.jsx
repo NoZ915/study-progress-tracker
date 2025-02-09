@@ -1,8 +1,9 @@
-import { useParams, useSearchParams } from "react-router-dom";
-import { useGetAllSessionsByMaterialId } from "../hooks/sessions/useGetAllSessionsByMaterialId.js";
-import { Button, Card, Group, Loader, Stack, Text } from "@mantine/core";
-import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
+import { Button, Card, Group, Loader, Stack, Text } from "@mantine/core";
+
+import useSessionsWithProgress from "../hooks/useSessionsWithProgress.js";
 import EditSessionMaodal from "../components/EditSessionModal.jsx";
 
 function SessionPage() {
@@ -11,7 +12,8 @@ function SessionPage() {
   const [searchParams] = useSearchParams();
   const user_material_id = searchParams.get("user_material_id");
 
-  const { data: sessions, isLoading } = useGetAllSessionsByMaterialId(material_id);
+  // 取得處理後的 sessions 資料
+  const { sessions, isLoading } = useSessionsWithProgress(material_id, user_material_id);
 
   // 編輯的Modal出現/關閉
   const [editSession, setEditSession] = useState(null);
@@ -40,9 +42,11 @@ function SessionPage() {
                       <Text fw={700} size="lg">{session.session_name}</Text>
                       <Group>
                         <Text>完成日期</Text>
+                        <Text>{session.completionTime}</Text>
                       </Group>
                       <Group>
                         <Text>訂正完成日期</Text>
+                        <Text>{session.correctionTime}</Text>
                       </Group>
                     </Stack>
                   </Group>
