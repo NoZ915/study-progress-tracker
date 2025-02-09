@@ -1,3 +1,4 @@
+import QUERY_KEYS from "../queryKeys.js"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updateUser } from "../../apis/userAPI";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +18,7 @@ export const useUpdateUser = () => {
     onSuccess: (updatedUser) => {
       navigate("/");
       setUser(updatedUser);
-      queryClient.invalidateQueries({ queryKey: ["user"] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER] });
 
     },
     onError: (err) => console.log(err)
