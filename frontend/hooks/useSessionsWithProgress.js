@@ -10,6 +10,7 @@ function useSessionsWithProgress(material_id, user_material_id) {
     const sessionProgress = progress.find((p) => p.session_id === session.session_id);
     return {
       ...session,
+      progressNotes: progress.notes,
       completionTime: sessionProgress?.completion_time
         ? new Date(sessionProgress.completion_time).toLocaleDateString()
         : "未完成",

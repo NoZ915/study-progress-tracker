@@ -30,8 +30,8 @@ function UserMaterialCard({ userMaterial }) {
                             <Skeleton height={8} width="100%" radius="xl" />
                         ) : (
                             <Group spacing="xs">
-                                <Progress value={progressPercentage.progressPercentage} color="blue" radius="xl" style={{ flex: 1 }} />
-                                <Text size="sm">{progressPercentage.progressPercentage}%</Text>
+                                <Progress value={progressPercentage} color="blue" radius="xl" style={{ flex: 1 }} />
+                                <Text size="sm">{progressPercentage}%</Text>
                             </Group>
                         )}
 

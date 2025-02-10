@@ -4,7 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { Button, Card, Group, Loader, Stack, Text } from "@mantine/core";
 
 import useSessionsWithProgress from "../hooks/useSessionsWithProgress.js";
-import EditSessionMaodal from "../components/EditSessionModal.jsx";
+import EditSessionModal from "../components/EditSessionModal.jsx";
 
 function SessionPage() {
   // 路由參數取得
@@ -70,7 +70,7 @@ function SessionPage() {
       )}
 
       {editSession && (
-        <EditSessionMaodal
+        <EditSessionModal
           session={editSession}
           onClose={handleClose}
         />
