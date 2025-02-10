@@ -12,3 +12,22 @@ export const getAllProgressByUserMaterialId = async (user_material_id) => {
   })
   return response.data;
 }
+
+export const updateProgress = async (user_material_id, session_id, completion_time, correction_time, notes) => {
+  const jwt = localStorage.getItem("jwt");
+  const response = await axiosInstance.post("/progress/updateProgress",
+    {
+      user_material_id,
+      session_id,
+      completion_time,
+      correction_time,
+      notes
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    }
+  );
+  return response.data;
+}
