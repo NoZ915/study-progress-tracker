@@ -13,7 +13,7 @@ class UserMaterialRepository {
       attributes: ["attempt_number"],
       raw: true
     });
-    return data.attempt_number;
+    return data ? data.attempt_number : null;
   }
 
   async createUserMaterial(user_id, material_id, attempt_number) {
