@@ -122,6 +122,11 @@ const EditProfilePage = () => {
                 opened={openCancelModal}
                 onClose={handleCloseModal}
                 onConfirm={handleConfirmCancel}
+                title="確定取消嗎？"
+                message="您還未儲存資料，確定要取消嗎？"
+                confirmText="是"
+                cancelText="否"
+                confirmColor="red"
             />
         </div>
     );

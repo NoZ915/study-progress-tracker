@@ -1,9 +1,11 @@
-import { useGetAllMaterials } from "../hooks/materials/useGetAllMaterials.js";
 import { Container, Text, SimpleGrid, Card, Loader, Image, AspectRatio, Button } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./MaterialsPage.module.css";
+import { useGetAllMaterials } from "../hooks/materials/useGetAllMaterials.js";
 import { useCreateNewUserMaterial } from "../hooks/userMaterials/useCreateNewUserMaterial.js";
 import { useAuthContext } from "../hooks/useAuthContext.js";
+import ConfirmCancelModal from '../components/ConfirmCancelModal.jsx';
+import { useState } from "react";
 
 function MaterialsPage() {
     const user = useAuthContext();
@@ -11,13 +13,28 @@ function MaterialsPage() {
     const { data: materials, isLoading } = useGetAllMaterials();
     const { mutate } = useCreateNewUserMaterial();
 
+    const [openCancelModal, setOpenCancelModal] = useState(false);
+    const [selectedMaterialId, setSelectedMaterialId] = useState(null);
     const handleCreateUserMaterial = (material_id) => {
+        setSelectedMaterialId(material_id);
+        setOpenCancelModal(true);
+    }
+    const handleCloseModal = () => {
+        setSelectedMaterialId(null);
+        setOpenCancelModal(false);
+        navigate('/');
+    };
+    const handleConfirmCreateUserMaterial = () => {
+        console.log(selectedMaterialId);
+        if (!selectedMaterialId) return;
         mutate({
             user_id: user.user_id,
-            material_id: material_id
+            material_id: selectedMaterialId
         })
-        navigate("/progress");
-    }
+        setSelectedMaterialId(null);
+        setOpenCancelModal(false);
+        navigate('/progress');
+    };
 
     return (
         <Container>
@@ -53,8 +70,17 @@ function MaterialsPage() {
                                 加入進度
                             </Button>
                         </Card>
-
                     ))}
+                    <ConfirmCancelModal
+                        opened={openCancelModal}
+                        onClose={handleCloseModal}
+                        onConfirm={handleConfirmCreateUserMaterial}
+                        title="將要把該本講義加入您的進度"
+                        message="確定加入進度嗎？"
+                        confirmText="確定"
+                        cancelText="取消"
+                        confirmColor="blue"
+                    />
                 </SimpleGrid>
             ) : (
                 <Loader size="lg" variant="bars" />
