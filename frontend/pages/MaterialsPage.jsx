@@ -52,7 +52,7 @@ function MaterialsPage() {
                             withBorder
                             className={styles.card}
                         >
-                            <Link to={`/sessions/${material.material_id}`} style={{ textDecoration: "none", flexGrow: 1 }} >
+                            <Link to={`/materials/${material.material_id}`} style={{ textDecoration: "none", flexGrow: 1 }} >
                                 <AspectRatio ratio={768 / 1024} style={{ marginBottom: "10px", overflow: "hidden" }}>
                                     <Image
                                         src={material.image_url}

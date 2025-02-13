@@ -24,6 +24,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <MaterialsPage />, index: true },
       { path: "/auth/google/callback", element: <OAuthCallbackPage /> },
+      { path: "/materials/:material_id", element: <MaterialsPage /> },
 
       // 受保護的route（未登入無法瀏覽）
       {
