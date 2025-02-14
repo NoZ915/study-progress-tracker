@@ -33,32 +33,29 @@ function MaterialDetailPage() {
         {material.title}
       </Text>
 
-      {/* 圖片縮小 */}
       <Center>
         <Image
           src={material.image_url}
           alt={material.title}
-          width={250} // 可根據 MaterialsPage 的大小微調
+          width={250}
           height={350}
           fit="contain"
         />
       </Center>
+
+      <Stack align="center" mt="lg">
+        <Rating value={material.average_rating} readOnly size="xl" />
+      </Stack>
+
       <Group justify="center" mt="md">
         <Button color="orange" variant="filled">加入進度</Button>
         <Button color="lime.4" variant="filled" autoContrast>我要評價</Button>
       </Group>
 
-      {/* 評分部分置中 */}
-      <Stack align="center" mt="lg">
-        <Text size="lg">評分</Text>
-        <Rating value={material.average_rating} readOnly />
-      </Stack>
-
       {/* 使用者回饋 可拆成一個元件 */}
-      <Text size="lg" mt="lg">使用者回饋</Text>
       {material.feedbacks.length > 0 ? (
         material.feedbacks.map((feedback) => (
-          <Card key={feedback.feedback_id} shadow="sm" radius="md" mt="sm">
+          <Card key={feedback.feedback_id} shadow="sm" radius="md" mt="sm" justify="left">
             <Text fw={700}>{feedback.user_id}</Text>
             <Rating value={feedback.rating} readOnly />
             <Text>{feedback.comment}</Text>
