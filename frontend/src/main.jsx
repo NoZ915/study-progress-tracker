@@ -14,6 +14,7 @@ import SessionsPage from '../pages/SessionsPage.jsx';
 import EditProfilePage from '../pages/EditProfilePage.jsx';
 import OAuthCallbackPage from '../pages/OAuthCallbackPage.jsx';
 import ProgressPage from '../pages/ProgressPage.jsx';
+import MaterialDetailPage from '../pages/MaterialDetailPage.jsx';
 
 const queryClient = new QueryClient();
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <MaterialsPage />, index: true },
       { path: "/auth/google/callback", element: <OAuthCallbackPage /> },
-      { path: "/materials/:material_id", element: <MaterialsPage /> },
+      { path: "/materials/:material_id", element: <MaterialDetailPage /> },
 
       // 受保護的route（未登入無法瀏覽）
       {
