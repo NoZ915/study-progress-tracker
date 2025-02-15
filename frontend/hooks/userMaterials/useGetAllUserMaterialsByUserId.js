@@ -4,7 +4,8 @@ import { getAllUserMaterialsByUserId } from "../../apis/userMaterialAPI"
 
 export const useGetAllUserMaterialsByUserId = (user_id) => {
     return useQuery({
-        queryKey: [QUERY_KEYS.USER_MATERIALS],
-        queryFn: () => getAllUserMaterialsByUserId(user_id)
+        queryKey: [QUERY_KEYS.USER_MATERIALS, user_id],
+        queryFn: () => getAllUserMaterialsByUserId(user_id),
+        enabled: !!user_id
     })
 }

@@ -32,7 +32,6 @@ function MaterialsPage() {
                 onSuccess: () => {
                     setSelectedMaterialId(null);
                     setOpenCancelModal(false);
-                    navigate('/progress'); // 在成功後才導航，確保新資料已經快取更新
                 },
             }
         )
