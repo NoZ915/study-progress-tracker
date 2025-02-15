@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
-import { Button, Card, Group, Loader, Stack, Text } from "@mantine/core";
+import { FaEdit, FaFileExport } from "react-icons/fa";
+import { Button, Card, Container, Group, Loader, Stack, Text } from "@mantine/core";
 
 import useSessionsWithProgress from "../hooks/useSessionsWithProgress.js";
 import EditSessionModal from "../components/EditSessionModal.jsx";
+import { useExportProgressExcel } from "../hooks/progress/useExportProgressExcel.js";
 
 function SessionPage() {
   // 路由參數取得
@@ -24,20 +25,31 @@ function SessionPage() {
     setEditSession(null);
   }
 
+  // 匯出excel
+  const { mutate } = useExportProgressExcel()
+  const handleExport = () => {
+    mutate({  material_id, user_material_id })
+  }
+
   return (
     <div>
       {!isLoading ? (
-        <div>
+        <Container mt="md">
+          <Button
+            leftSection={<FaFileExport />}
+            size="md"
+            variant="gradient"
+            gradient={{ from: "teal", to: "blue", deg: 120 }}
+            onClick={handleExport} 
+            disabled={isLoading}
+          >
+            匯出 Excel
+          </Button>
           {sessions.map((session) => {
             return (
-              <Card shadow="sm" mb="md" padding="md" radius="md" withBorder key={session.session_id}>
+              <Card shadow="sm" mt="md" padding="md" radius="md" withBorder key={session.session_id}>
                 <Group justify="space-between" gap="xl">
                   <Group>
-                    {/* <Checkbox
-                      color="lime.4"
-                      iconColor="dark.8"
-                      size="md"
-                    /> */}
                     <Stack align="flex-start">
                       <Text fw={700} size="lg">{session.session_name}</Text>
                       <Group>
@@ -64,7 +76,7 @@ function SessionPage() {
               </Card>
             );
           })}
-        </div>
+        </Container>
       ) : (
         <Loader size="lg" variant="bars" />
       )}
