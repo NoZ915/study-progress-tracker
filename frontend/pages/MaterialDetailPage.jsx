@@ -1,16 +1,24 @@
 import { useParams } from "react-router-dom";
-import { Container, Text, Image, Button, Loader, Rating, Card, Center, Group } from "@mantine/core";
-import { useGetMaterialDetail } from "../hooks/materials/useGetMaterialDetail";
 import { useState } from "react";
-import ConfirmCancelModal from "../components/ConfirmCancelModal";
+import dayjs from "dayjs";
+import { Container, Text, Image, Button, Loader, Rating, Card, Center, Group } from "@mantine/core";
+
+import { useGetMaterialDetail } from "../hooks/materials/useGetMaterialDetail";
 import { useCreateNewUserMaterial } from "../hooks/userMaterials/useCreateNewUserMaterial";
 import { useAuthContext } from "../hooks/useAuthContext";
+
+import ConfirmCancelModal from "../components/ConfirmCancelModal";
 
 function MaterialDetailPage() {
   const user = useAuthContext();
   const { material_id } = useParams();
   const { data: material, isLoading, isFetching } = useGetMaterialDetail(material_id);
   const { mutate } = useCreateNewUserMaterial();
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "未知日期"; // 避免 null 或 undefined
+    return dayjs(dateString).format("YYYY-MM-DD");
+  };
 
   const [openCancelModal, setOpenCancelModal] = useState(false);
   const handleCloseModal = () => {
@@ -47,7 +55,7 @@ function MaterialDetailPage() {
       </Center>
 
       <Group justify="center" align="center" mt="lg">
-        <Rating value={material.averageRatings} readOnly size="xl" />
+        <Rating value={material.averageRatings} readOnly size="xl" fractions={4} />
         <Text>{material.averageRatings}</Text>
       </Group>
 
@@ -70,16 +78,23 @@ function MaterialDetailPage() {
       {material.feedbacks?.length > 0 ? (
         material.feedbacks.map((feedback) => (
           <Card key={feedback.feedback_id} shadow="sm" radius="md" mt="sm" align="left">
-            <Text fw={700}>{feedback.user.name}</Text>
             <Group>
+              <Text fw={700}>{feedback.user.name}</Text>
+              <Text c="gray">
+              {feedback.updated_at === null || feedback.updated_at === "" 
+                ? formatDate(feedback.created_at) 
+                : formatDate(feedback.updated_at)}
+              </Text>
+            </Group>
+            <Group mt="sm">
               <Rating value={feedback.rating} readOnly />
               <Text>{feedback.rating}</Text>
             </Group>
-            <Text>{feedback.comment}</Text>
+            <Text mt="sm">{feedback.comment}</Text>
           </Card>
         ))
       ) : (
-        <Text color="gray" mt="md">目前沒有回饋</Text>
+        <Text c="gray" mt="md">目前沒有回饋</Text>
       )}
     </Container>
   );
