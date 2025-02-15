@@ -1,31 +1,14 @@
 import { useParams } from "react-router-dom";
 import { Container, Text, Image, Button, Loader, Rating, Card, Center, Stack, Grid, Group } from "@mantine/core";
-// import { useGetMaterialDetail } from "../hooks/useGetMaterialDetail";
+import { useGetMaterialDetail } from "../hooks/materials/useGetMaterialDetail";
 
 function MaterialDetailPage() {
   const { material_id } = useParams();
-  const material = {
-    image_url: "/images/materials/TOEIC_golden5Tests.jpg",
-    title: "多益新制黃金團隊5回全真試題",
-    average_rating: 4.5,
-    feedbacks: [
-      {
-        feedback_id: 1,
-        user_id: "user1",
-        rating: 4.5,
-        comment: "這個講義很棒！"
-      },
-      {
-        feedback_id: 2,
-        user_id: "user2",
-        rating: 3.5,
-        comment: "這個講義還不錯！"
-      }
-    ]
-  }
-  // const { data: material, isLoading } = useGetMaterialDetail(material_id);
+  const { data: material, isLoading } = useGetMaterialDetail(material_id);
+  console.log(material_id)
+  console.log(material)
 
-  // if (isLoading) return <Loader size="lg" />;
+  if (isLoading) return <Loader size="lg" />;
 
   return (
     <Container size="sm">
@@ -53,9 +36,9 @@ function MaterialDetailPage() {
       </Group>
 
       {/* 使用者回饋 可拆成一個元件 */}
-      {material.feedbacks.length > 0 ? (
+      {material.feedbacks?.length > 0 ? (
         material.feedbacks.map((feedback) => (
-          <Card key={feedback.feedback_id} shadow="sm" radius="md" mt="sm" justify="left">
+          <Card key={feedback.feedback_id} shadow="sm" radius="md" mt="sm" align="left">
             <Text fw={700}>{feedback.user_id}</Text>
             <Rating value={feedback.rating} readOnly />
             <Text>{feedback.comment}</Text>
