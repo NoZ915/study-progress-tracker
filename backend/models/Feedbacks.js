@@ -36,6 +36,8 @@ export const Feedback = sequelize.define("Feedback", {
   }
 }, {
   timestamps: true,
+  createdAt: "created_at", 
+  updatedAt: "updated_at",
   indexes: [
     {
       unique: true,
