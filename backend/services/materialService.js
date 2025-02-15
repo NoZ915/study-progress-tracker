@@ -10,7 +10,7 @@ class MaterialService {
         const material = await materialRepository.getMaterialById(material_id);
         const feedbacks = await feedbackRepository.getAllFeedbacksByMaterialId(material_id);
 
-        const totalRatings = feedbacks.reduce((sum, rating) => sum + feedbacks.rating, 0);
+        const totalRatings = feedbacks.reduce((sum, feedback) => sum + feedback.rating, 0);
         const averageRatings = feedbacks.length > 0 ? (totalRatings/feedbacks.length) : 0;
         return{
             ...material,

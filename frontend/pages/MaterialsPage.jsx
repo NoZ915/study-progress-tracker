@@ -10,7 +10,7 @@ import { useState } from "react";
 function MaterialsPage() {
     const user = useAuthContext();
     const navigate = useNavigate();
-    const { data: materials, isLoading } = useGetAllMaterials();
+    const { data: materials, isLoading: isLoadingMaterials } = useGetAllMaterials();
     const { mutate } = useCreateNewUserMaterial();
 
     const [openCancelModal, setOpenCancelModal] = useState(false);
@@ -25,15 +25,17 @@ function MaterialsPage() {
         navigate('/');
     };
     const handleConfirmCreateUserMaterial = () => {
-        console.log(selectedMaterialId);
         if (!selectedMaterialId) return;
-        mutate({
-            user_id: user.user_id,
-            material_id: selectedMaterialId
-        })
-        setSelectedMaterialId(null);
-        setOpenCancelModal(false);
-        navigate('/progress');
+        mutate(
+            { user_id: user.user_id, material_id: selectedMaterialId },
+            {
+                onSuccess: () => {
+                    setSelectedMaterialId(null);
+                    setOpenCancelModal(false);
+                    navigate('/progress'); // 在成功後才導航，確保新資料已經快取更新
+                },
+            }
+        )
     };
 
     return (
@@ -42,7 +44,7 @@ function MaterialsPage() {
                 講義清單
             </Text>
 
-            {!isLoading ? (
+            {!isLoadingMaterials ? (
                 <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
                     {materials.map((material) => (
                         <Card
