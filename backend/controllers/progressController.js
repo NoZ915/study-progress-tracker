@@ -23,7 +23,7 @@ export const getAllProgressByUserMaterialId = async (req, res) => {
 }
 
 export const exportProgressExcel = async (req, res) => {
-  try{
+  try {
     const user_id = req.user.user_id;
     const { user_material_id, material_id } = req.body;
     const excelBuffer = await ProgressService.exportProgressExcel(material_id, user_material_id, user_id);
@@ -31,9 +31,7 @@ export const exportProgressExcel = async (req, res) => {
     res.setHeader("Content-Disposition", 'attachment; filename="sessions.xlsx"');
     res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
     res.send(excelBuffer);
-    
-    return res.status(200),json()
-  } catch(err){
+  } catch (err) {
     return res.status(500).json({ error: err.message })
   }
 }

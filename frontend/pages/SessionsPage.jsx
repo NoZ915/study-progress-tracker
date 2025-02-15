@@ -26,9 +26,9 @@ function SessionPage() {
   }
 
   // 匯出excel
-  const { mutate } = useExportProgressExcel()
+  const { mutate, isPending } = useExportProgressExcel()
   const handleExport = () => {
-    mutate({  material_id, user_material_id })
+    mutate({ material_id, user_material_id })
   }
 
   return (
@@ -40,10 +40,10 @@ function SessionPage() {
             size="md"
             variant="gradient"
             gradient={{ from: "teal", to: "blue", deg: 120 }}
-            onClick={handleExport} 
-            disabled={isLoading}
+            onClick={handleExport}
+            disabled={isPending}
           >
-            匯出 Excel
+            {isPending ? "匯出中..." : "匯出 Excel"}
           </Button>
           {sessions.map((session) => {
             return (

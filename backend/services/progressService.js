@@ -15,9 +15,10 @@ class ProgressService {
     const sessions = await SessionRepository.getSessionsByMaterialId(material_id);
     for (const session of sessions) {
       const progress = await ProgressRepository.getAllProgress(user_material_id, user_id);
-      session.dataValues.notes = progress?.notes || "";
-      session.dataValues.completion_time = progress?.completion_time || "未完成";
-      session.dataValues.correction_time = progress?.correction_time || "未訂正";
+      const sessionProgress = progress.find((p) => p.dataValues.session_id === session.dataValues.session_id);
+      session.dataValues.notes = sessionProgress?.notes || "";
+      session.dataValues.completion_time = sessionProgress?.completion_time || "未完成";
+      session.dataValues.correction_time = sessionProgress?.correction_time || "未訂正";
     }
 
     // 建立excel
@@ -26,16 +27,32 @@ class ProgressService {
 
     // 設定header
     worksheet.columns = [
-      { header: "回數", key: "session_name", width: 20 },
-      { header: "完成時間", key: "completion_time", width: 15 },
-      { header: "完成時間", key: "correction_time", width: 15 },
+      { header: "回數", key: "session_name", width: 40 },
+      { header: "完成時間", key: "completion_time", width: 20 },
+      { header: "訂正完成時間", key: "correction_time", width: 20 },
       { header: "備註", key: "notes", width: 35 }
     ]
+
+    // 設定 header 樣式
+    worksheet.getRow(1).eachCell((cell) => {
+      cell.fill = {
+        type: "pattern",
+        pattern: "solid",
+        fgColor: { argb: "9ae3dc" }, // 背景顏色 (淡黃色)
+      };
+      cell.font = {
+        name: "Microsoft JhengHei",
+        bold: true,
+        color: { argb: "000000" }, // 文字顏色 (黑色)
+        size: 12
+      };
+      cell.alignment = { horizontal: "center", vertical: "middle" };
+    });
 
     // 插入資料
     sessions.forEach((session) => {
       worksheet.addRow([
-        session.dataValues.name,
+        session.dataValues.session_name,
         session.dataValues.completion_time,
         session.dataValues.correction_time,
         session.dataValues.notes
