@@ -1,4 +1,4 @@
-import { Container, Loader, SimpleGrid } from "@mantine/core";
+import { Card, Container, Loader, SimpleGrid } from "@mantine/core";
 import { useGetAllUserMaterialsByUserId } from "../hooks/userMaterials/useGetAllUserMaterialsByUserId.js";
 import { jwtDecode } from "jwt-decode";
 import UserMaterialCard from "../components/UserMaterialCard.jsx";
@@ -13,8 +13,8 @@ function ProgressPage() {
     <Container>
       {!isLoading ? (
         <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} style={{ justifyItems: "center" }}>
-          {userMaterials.map((userMaterial) => {
-            return <UserMaterialCard key={userMaterial.user_material_id} userMaterial={userMaterial} />
+          {userMaterials.map((u) => {
+            return <UserMaterialCard key={u.userMaterial.user_material_id} userMaterial={u} isLoading={isLoading} />
           })}
         </SimpleGrid>
       ) : (
