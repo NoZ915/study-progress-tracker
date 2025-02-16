@@ -36,6 +36,15 @@ class UserMaterialRepository {
       ]
     })
   }
+
+  async deleteOneUserMaterial(user_material_id, user_id) {
+    return await UserMaterials.destroy({
+      where: {
+        user_material_id:  user_material_id,
+        user_id: user_id
+      }
+    })
+  }
 }
 
 export default new UserMaterialRepository;

@@ -1,6 +1,7 @@
 import UserMaterialRepository from "../repositories/userMaterialRepository.js";
 import SessionRepository from "../repositories/sessionRepository.js";
 import ProgressRepository from "../repositories/progressRepository.js";
+import { deleteOneUserMaterial } from "../controllers/userMaterialController.js";
 
 
 class UserMaterialService {
@@ -43,6 +44,10 @@ class UserMaterialService {
     );
 
     return userMaterialsWithProgress;
+  }
+
+  async deleteOneUserMaterial(user_material_id, user_id){
+    return await UserMaterialRepository.deleteOneUserMaterial(user_material_id, user_id)
   }
 }
 
