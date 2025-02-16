@@ -12,7 +12,7 @@ function ProgressPage() {
   return (
     <Container>
       {!isLoading ? (
-        <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} style={{ justifyItems: "center" }}>
+        <SimpleGrid cols={{ base: 1, sm: 2 }} style={{ justifyItems: "center" }}>
           {userMaterials.map((u) => {
             return <UserMaterialCard key={u.userMaterial.user_material_id} userMaterial={u} isLoading={isLoading} />
           })}
