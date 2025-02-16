@@ -13,7 +13,7 @@ function MaterialDetailPage() {
   const user = useAuthContext();
   const { material_id } = useParams();
   const { data: material, isLoading, isFetching } = useGetMaterialDetail(material_id);
-  const { mutate } = useCreateNewUserMaterial();
+  const { mutate, isPending } = useCreateNewUserMaterial();
 
   const formatDate = (dateString) => {
     if (!dateString) return "未知日期"; // 避免 null 或 undefined
@@ -73,6 +73,7 @@ function MaterialDetailPage() {
         confirmText="確定"
         cancelText="取消"
         confirmColor="blue"
+        isPending={isPending}
       />
 
       {material.feedbacks?.length > 0 ? (

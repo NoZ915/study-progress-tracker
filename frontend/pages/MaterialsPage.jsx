@@ -11,7 +11,7 @@ function MaterialsPage() {
     const user = useAuthContext();
     const navigate = useNavigate();
     const { data: materials, isLoading: isLoadingMaterials } = useGetAllMaterials();
-    const { mutate } = useCreateNewUserMaterial();
+    const { mutate, isPending } = useCreateNewUserMaterial();
 
     const [openCancelModal, setOpenCancelModal] = useState(false);
     const [selectedMaterialId, setSelectedMaterialId] = useState(null);
@@ -81,6 +81,7 @@ function MaterialsPage() {
                         confirmText="確定"
                         cancelText="取消"
                         confirmColor="blue"
+                        isPending={isPending}
                     />
                 </SimpleGrid>
             ) : (

@@ -10,14 +10,15 @@ function ConfirmCancelModal({
   confirmText = "是",
   cancelText = "否",
   confirmColor = "red",
-  cancelColor = "gray"
+  cancelColor = "gray",
+  isPending = false
 }) {
   return (
     <Modal opened={opened} onClose={onClose} title={title} centered>
       <Text>{message}</Text>
       <Group position="right" mt="md">
-        <Button onClick={onConfirm} color={confirmColor}>{confirmText}</Button>
-        <Button onClick={onClose} color={cancelColor}>{cancelText}</Button>
+        <Button onClick={onConfirm} color={confirmColor} disabled={isPending}>{confirmText}</Button>
+        <Button onClick={onClose} color={cancelColor} disabled={isPending}>{cancelText}</Button>
       </Group>
     </Modal>
   );
