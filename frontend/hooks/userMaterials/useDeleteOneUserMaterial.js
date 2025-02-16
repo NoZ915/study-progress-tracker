@@ -7,9 +7,12 @@ export const useDeleteOneUserMaterial = () => {
     const queryClient = useQueryClient();
     const jwt = jwtDecode(localStorage.getItem("jwt"));
     return useMutation({
-        mutationFn: (user_material_id) => deleteOneUserMaterial(user_material_id),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER_MATERIALS, jwt.user_id] })
+        mutationFn: async (user_material_id) => {
+            return await deleteOneUserMaterial(user_material_id);
+        },
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER_MATERIALS, jwt.user_id] });
+            await queryClient.refetchQueries({ queryKey: [QUERY_KEYS.USER_MATERIALS, jwt.user_id] });
         },
         onError: (err) => console.log(err)
     })

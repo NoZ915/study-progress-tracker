@@ -10,14 +10,11 @@ export const useCreateNewUserMaterial = () => {
     return useMutation({
         mutationFn: (data) => {
             const { user_id, material_id } = data;
-            createNewUserMaterial(user_id, material_id);
-            return data
+            return createNewUserMaterial(user_id, material_id);
         },
-        onSuccess: (data) => {
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER_MATERIALS] })
-            queryClient.refetchQueries({ queryKey: [QUERY_KEYS.USER_MATERIALS] }).then(() => {
-                navigate('/progress');
-            });
+        onSuccess: async (data) => {
+            await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER_MATERIALS, data.user_id] });
+            navigate('/progress'); 
         },
         onError: (err) => console.log(err)
     })
