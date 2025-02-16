@@ -11,8 +11,9 @@ export const useCreateNewUserMaterial = () => {
         mutationFn: (data) => {
             const { user_id, material_id } = data;
             createNewUserMaterial(user_id, material_id);
+            return data
         },
-        onSuccess: () => {
+        onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER_MATERIALS] })
             queryClient.refetchQueries({ queryKey: [QUERY_KEYS.USER_MATERIALS] }).then(() => {
                 navigate('/progress');
