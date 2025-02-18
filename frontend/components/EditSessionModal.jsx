@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Group, Modal, Button } from "@mantine/core";
+import { Group, Modal, Button, Textarea } from "@mantine/core";
 import { DateInput } from '@mantine/dates';
 import { useUpdateProgress } from '../hooks/progress/useUpdateProgress.js';
 import { useSearchParams } from 'react-router-dom';
@@ -17,6 +17,9 @@ function EditSessionModal({ session, onClose }) {
     const [correctionTime, setCorrectionTime] = useState(
         isNaN(Date.parse(session.correctionTime)) ? null : new Date(session.correctionTime)
     );
+    const [notes, setNotes] = useState(
+        session.notes ? session.notes : ""
+    );
 
     const handleSave = () => {
         mutate({
@@ -24,7 +27,7 @@ function EditSessionModal({ session, onClose }) {
             session_id: session.session_id,
             completion_time: completionTime ? completionTime.toISOString() : null,
             correction_time: correctionTime ? correctionTime.toISOString() : null,
-            notes: session.notes
+            notes: notes
         });
         onClose();
     };
@@ -46,6 +49,14 @@ function EditSessionModal({ session, onClose }) {
                 label="訂正完成日期"
                 placeholder="選擇日期"
                 clearable
+            />
+            <Textarea
+                value={notes}
+                onChange={(event) => setNotes(event.target.value)}
+                label="筆記"
+                placeholder="輸入筆記..."
+                autosize={true}
+                minRows={3}
             />
             <Group position="right" mt="md">
                 <Button onClick={handleSave}>儲存</Button>
