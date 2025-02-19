@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { FaEdit, FaFileExport } from "react-icons/fa";
-import { Button, Card, Container, Group, Loader, Stack, Text } from "@mantine/core";
+import { Button, Card, Container, Divider, Group, Loader, Stack, Text } from "@mantine/core";
 
 import useSessionsWithProgress from "../hooks/useSessionsWithProgress.js";
 import EditSessionModal from "../components/EditSessionModal.jsx";
@@ -73,6 +73,17 @@ function SessionPage() {
                     編輯
                   </Button>
                 </Group>
+
+                {session.notes && (
+                  <>
+                    <Divider my="sm" />
+                    <Card.Section inheritPadding mt="sm" mb="sm">
+                      <Text size="md" c="dimmed">
+                        {session.notes}
+                      </Text>
+                    </Card.Section>
+                  </>
+                )}
               </Card>
             );
           })}
