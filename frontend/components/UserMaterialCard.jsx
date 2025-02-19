@@ -1,8 +1,7 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Card, Image, Text, Progress, Group, Stack, Skeleton, Button } from "@mantine/core";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { jwtDecode } from "jwt-decode";
 import { useDeleteOneUserMaterial } from "../hooks/userMaterials/useDeleteOneUserMaterial";
 
 function UserMaterialCard({ userMaterial, isLoading }) {
@@ -59,17 +58,19 @@ function UserMaterialCard({ userMaterial, isLoading }) {
     );
 }
 
-// UserMaterialCard.propTypes = {
-//     progressPercentage: PropTypes.number,
-//     userMaterial: PropTypes.shape({
-//         user_material_id: PropTypes.number.isRequired,
-//         material_id: PropTypes.number.isRequired,
-//         material: PropTypes.shape({
-//             material_id: PropTypes.number.isRequired,
-//             image_url: PropTypes.string.isRequired,
-//             title: PropTypes.string.isRequired,
-//         }).isRequired,
-//     }).isRequired,
-// };
+UserMaterialCard.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    userMaterial: PropTypes.shape({
+        userMaterial: PropTypes.shape({
+            user_material_id: PropTypes.number.isRequired,
+            material_id: PropTypes.number.isRequired,
+            material: PropTypes.shape({
+                image_url: PropTypes.string.isRequired,
+                title: PropTypes.string.isRequired,
+            }).isRequired,
+        }).isRequired,
+        progressPercentage: PropTypes.number.isRequired,
+    }).isRequired,
+};
 
 export default UserMaterialCard;
