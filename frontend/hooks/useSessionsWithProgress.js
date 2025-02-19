@@ -17,6 +17,7 @@ function useSessionsWithProgress(material_id, user_material_id) {
       correctionTime: sessionProgress?.correction_time
         ? new Date(sessionProgress.correction_time).toLocaleDateString()
         : "未訂正",
+      notes: sessionProgress?.notes ? sessionProgress.notes : "",
     };
   });
 
