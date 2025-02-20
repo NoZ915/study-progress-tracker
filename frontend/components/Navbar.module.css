@@ -1,6 +1,7 @@
 /* Navbar 整體樣式 */
 .header {
     background-color: #fff;
+    margin-bottom: 24px;
     padding: 12px 0;
     border-bottom: 1px solid #ddd;
 }
