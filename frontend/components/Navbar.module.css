@@ -1,45 +1,76 @@
-*{
-    /* border: 1px solid black; */
-}
+/* Navbar 整體樣式 */
 .header {
-    height: 56px;
-    margin-bottom: 24px;
-    background-color: var(--mantine-color-body);
-    border-bottom: 1px solid rgb(159, 157, 157);
+    background-color: #fff;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
 }
 
+/* 內部內容的排版 */
 .inner {
     display: flex;
-    height: 56px;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
-.navbargroup{
-    align-items: center;
-}
-
-.logo {
-    height: 48px;
-    transition: transform 0.2s ease;
-}
-
-.logo:hover {
-    transform: scale(1.05);
+/* 桌面版導覽列 */
+.navbargroup {
+    display: flex;
+    gap: 16px;
 }
 
 .link {
-    display: block;
-    line-height: 1;
-    padding: 8px 12px;
-    border-radius: 4px;
     text-decoration: none;
-    color: #444;
+    color: #333;
     font-size: 16px;
-    font-weight: 500;
-    transition: background-color 100ms ease;
+    font-weight: bold;
 }
 
 .link:hover {
-    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+/* ========================= */
+/*      手機版樣式          */
+/* ========================= */
+
+/* 隱藏桌面版導覽列 */
+@media (max-width: 768px) {
+    .navbargroup {
+        display: none;
+    }
+}
+
+/* Burger 按鈕 */
+.burger {
+    cursor: pointer;
+    color: #333;
+}
+
+/* Drawer（側邊選單）整體容器 */
+.mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+}
+
+/* 手機版連結樣式 */
+.mobileLink {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.mobileLink:hover {
+    color: #007bff;
+}
+
+/* 登入/登出按鈕 */
+.mobileAuth {
+    margin-top: 20px;
+    width: 100%;
 }
