@@ -8,6 +8,7 @@ import { useCreateNewUserMaterial } from "../hooks/userMaterials/useCreateNewUse
 import { useAuthContext } from "../hooks/useAuthContext";
 
 import ConfirmCancelModal from "../components/ConfirmCancelModal";
+import EditFeedbackModal from "../components/EditFeedbackModal";
 
 function MaterialDetailPage() {
   const user = useAuthContext();
@@ -36,6 +37,15 @@ function MaterialDetailPage() {
     )
   };
 
+  const [editFeedback, setEditFeedback] = useState(null);
+  const handleEdit = (material) => {
+    console.log(material)
+    setEditFeedback(material)
+  }
+  const handleClose = () => {
+    setEditFeedback(null)
+  }
+
   if (isLoading || isFetching) return <Loader size="lg" />;
 
   return (
@@ -61,7 +71,7 @@ function MaterialDetailPage() {
 
       <Group justify="center" mt="md">
         <Button color="orange" variant="filled" onClick={() => setOpenCancelModal(true)}>加入進度</Button>
-        <Button color="lime.4" variant="filled" autoContrast>我要評價</Button>
+        <Button color="lime.4" variant="filled" autoContrast onClick={() => handleEdit(material)}>我要評價</Button>
       </Group>
 
       <ConfirmCancelModal
@@ -96,6 +106,13 @@ function MaterialDetailPage() {
         ))
       ) : (
         <Text c="gray" mt="md">目前沒有回饋</Text>
+      )}
+
+      {editFeedback && (
+        <EditFeedbackModal 
+          material={editFeedback}
+          onClose={handleClose}
+        />
       )}
     </Container>
   );
