@@ -1,5 +1,6 @@
 import express from "express";
 import { authenticateJWT } from "../middlewares/authMiddleware.js";
+import { createNewFeedback } from "../controllers/feedbackController.js";
 
 const router = express.Router();
 
