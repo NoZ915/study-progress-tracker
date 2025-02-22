@@ -35,13 +35,6 @@
 /*      手機版樣式          */
 /* ========================= */
 
-/* 隱藏桌面版導覽列 */
-@media (max-width: 768px) {
-    .navbargroup {
-        display: none;
-    }
-}
-
 /* Burger 按鈕 */
 .burger {
     cursor: pointer;
