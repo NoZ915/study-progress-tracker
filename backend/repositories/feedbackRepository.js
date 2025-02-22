@@ -14,10 +14,15 @@ class FeedbackRepository {
     });
   }
 
-  async createNewFeedback(){
+  async createNewFeedback(
+    user_id,
+    material_id,
+    rating,
+    comment
+  ) {
     return await Feedback.create({
-      user_id, 
-      material_id, 
+      user_id,
+      material_id,
       rating,
       comment
     })
