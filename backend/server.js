@@ -10,6 +10,7 @@ import materialsRoutes from "./routes/materials.js"
 import usersRoutes from "./routes/users.js";
 import userMaterialsRoutes from "./routes/userMaterials.js";
 import progressRoutes from "./routes/progress.js";
+import feedbackRoutes from "./routes/feedback.js";
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,7 @@ app.use("/api/users", usersRoutes)
 app.use("/api/auth", usersRoutes);
 app.use("/api/userMaterials", userMaterialsRoutes)
 app.use("/api/progress", progressRoutes)
+app.use("/api/feedbacks", feedbackRoutes)
 
 const startServer = async () => {
   try {
