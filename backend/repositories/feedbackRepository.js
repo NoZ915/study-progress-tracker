@@ -13,6 +13,15 @@ class FeedbackRepository {
       order: [["created_at", "DESC"]],
     });
   }
+
+  async createNewFeedback(){
+    return await Feedback.create({
+      user_id, 
+      material_id, 
+      rating,
+      comment
+    })
+  }
 }
 
 export default new FeedbackRepository;

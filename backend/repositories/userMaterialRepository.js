@@ -1,4 +1,3 @@
-import { getAllUserMaterialsByUserId } from "../controllers/userMaterialController.js";
 import { Material } from "../models/Material.js";
 import { UserMaterials } from "../models/UserMaterials.js"
 
