@@ -1,8 +1,10 @@
+import feedbackService from "../services/feedbackService.js";
+
 export const createNewFeedback = async(req, res) => {
     try{
         const user_id = req.user.user_id;
         const { material_id, rating, comment } = req.body;
-        const newFeedback = await FeedbackService.createNewFeedback(
+        const newFeedback = await feedbackService.createNewFeedback(
             user_id, 
             material_id, 
             rating,

@@ -1,4 +1,4 @@
-import FeedbackRepository from "../repositories/feedbackRepository";
+import FeedbackRepository from "../repositories/feedbackRepository.js";
 
 class FeedbackService {
     async createNewFeedback(
